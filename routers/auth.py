@@ -9,20 +9,21 @@ from schemas.user import UserCreate, Token
 router = APIRouter(prefix="/api", tags=["auth"])
 
 
-@router.post("/register")
+@router.post("/register", response_model=None)
 def register(data: UserCreate, db: Session = Depends(get_db)):
+    if data.password != data.password2:
+        raise HTTPException(status_code=400, detail="Passwords do not match")
     if db.query(User).filter(User.email == data.email).first():
-        raise HTTPException(400, "Email занят")
+        raise HTTPException(status_code=400, detail="Email already used")
     user = User(
         email=data.email,
         password_hash=hash_password(data.password),
         first_name=data.first_name,
         last_name=data.last_name,
-        middle_name=data.middle_name,
     )
     db.add(user)
     db.commit()
-    return {"message": "Создан"}
+    return {"message": "created"}
 
 
 @router.post("/login", response_model=Token)

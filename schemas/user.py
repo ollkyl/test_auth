@@ -5,7 +5,6 @@ class UserBase(BaseModel):
     email: EmailStr
     first_name: str | None = None
     last_name: str | None = None
-    middle_name: str | None = None
 
 
 class UserCreate(UserBase):
@@ -16,7 +15,6 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     first_name: str | None = None
     last_name: str | None = None
-    middle_name: str | None = None
 
 
 class UserOut(UserBase):

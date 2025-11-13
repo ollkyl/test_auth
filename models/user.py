@@ -11,7 +11,6 @@ class User(Base):
     password_hash = Column(String)
     first_name = Column(String)
     last_name = Column(String)
-    middle_name = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
 
     roles = relationship("Role", secondary="user_roles", back_populates="users")

@@ -14,7 +14,7 @@ def me(user=Depends(get_current_user)):
 
 @router.put("/me")
 def update_me(data: UserUpdate, user=Depends(get_current_user), db: Session = Depends(get_db)):
-    for key, val in data.dict(exclude_unset=True).items():
+    for key, val in data.model_dump(exclude_unset=True).items():
         setattr(user, key, val)
     db.commit()
     return {"message": "Обновлено"}
