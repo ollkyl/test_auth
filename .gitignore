@@ -1,0 +1,29 @@
+# Папки виртуальных окружений
+.venv/
+venv/
+env/
+.env
+photos/
+apartments.json
+
+
+
+# Кэшированные файлы Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Файлы настроек IDE
+.vscode/
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+
+# Временные файлы
+*.tmp
+*.session
+*.session-journal
